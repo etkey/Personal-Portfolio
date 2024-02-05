@@ -1,0 +1,29 @@
+html {
+  background-color: #282828;
+  color: white;
+}
+body{
+  text-align: center;
+}
+h1 {
+  font-family: "Vinque", "Caladea", serif;
+}
+a {
+  color: white;
+}
+footer{
+  font-family: "Vinque", "Caladea", serif;
+  font-size: 1.25rem;
+}
+.header-segment{
+  display: inline-flex;
+}
+.header-image-segment{
+  margin: 5px;
+  padding-right: 5px;
+}
+.header-text-segment{
+  padding-bottom: 5px;
+  margin-top: 15px ;
+  margin-left: 5px;
+}

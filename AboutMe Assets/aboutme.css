@@ -1,0 +1,39 @@
+html {
+  background-color: #282828;
+  color: white;
+}
+body {
+  font-family: "Vinque", "Caladea", serif;
+  text-align: center;
+}
+p {
+  font-family: "Caladea", serif;
+}
+h1 {
+  display: inl;
+  font-family: "Vinque", "Caladea", serif;
+}
+a {
+  font-family: "Caladea", serif;
+  color: white;
+}
+footer {
+  font-family: "Vinque", "Caladea", serif;
+  font-size: 1.25rem;
+  color: white;
+}
+
+.header-segment{
+  display: inline-flex;
+}
+.header-text-segment{
+  display: inline-flex;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.header-image-segment{
+  text-align: right;
+  padding-left: 15px;
+  padding-right: 25px;
+}
