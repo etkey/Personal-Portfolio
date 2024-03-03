@@ -33,7 +33,7 @@ footer {
   .stack-library-image,
   .queue-library-image,
   .linked-list-library-image {
-    width: 400px;
-    height: 100px;
+    width: 200px;
+    height: 50px;
   }
 }
