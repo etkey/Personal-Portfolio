@@ -1,0 +1,100 @@
+html {
+  background-color: #212121;
+  color: white;
+}
+body {
+  text-align: center;
+}
+
+h1 {
+  font-family: "Lancelot", "Vinque", "Caladea", serif;
+}
+a {
+  color: #ffbe62;
+}
+footer {
+  font-family: "Lancelot", "Vinque", "Caladea", serif;
+  font-size: 1.25rem;
+}
+.footer-anchor {
+  color: #ffff;
+}
+.header-segment {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.header-image-segment {
+  height: 10rem;
+  width: 10rem;
+  align-self: center;
+}
+.header-text-segment {
+  color: #ffff;
+  justify-content: center;
+  align-self: center;
+}
+
+.header-menu-segment {
+  display: flexbox;
+  flex-direction: column;
+  cursor: pointer;
+  height: 100%;
+  align-self: center;
+}
+
+.bar1,
+.bar2,
+.bar3 {
+  position: relative;
+  align-self: center;
+  margin-top: 0.75rem;
+  height: 0.5rem;
+  width: 6.5rem;
+  background-color: #ffbe62;
+  border-radius: 2rem;
+}
+.menu-items {
+  display: none;
+}
+
+.menu-items.revealMenu {
+  display: flex;
+}
+.menu-links {
+  width: 6.5rem;
+  margin-top: 0.5rem;
+  position: absolute;
+  align-self: left;
+  align-items: left;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffbe62;
+}
+
+.menu-links a {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  color: #212121;
+}
+
+.menu-links a:hover {
+  background-color: #fff;
+}
+
+@media (max-width: 1200px) {
+  .github-repo-image {
+    width: 18.75rem;
+    height: 5rem;
+  }
+  .menu-links {
+    width: 4rem;
+  }
+  .bar1,
+  .bar2,
+  .bar3 {
+    width: 4rem;
+    margin-top: 0.5rem;
+  }
+}
