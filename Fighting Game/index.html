@@ -3,12 +3,18 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Fighting Game</title>
+        <title>Trial By Steel - A Fighting Game</title>
         <link rel="icon" type="image/x-icon" href="shield.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
             href="https://fonts.googleapis.com/css2?family=Jersey+20&family=Pixelify+Sans:wght@400..700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Jacquard+24&display=swap"
             rel="stylesheet"
         />
         <style>
@@ -17,6 +23,55 @@
                 font-family: "Jersey 20", sans-serif;
                 font-weight: 400;
                 font-style: normal;
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                display: flex;
+                flex-direction: column;
+                height: 100vh;
+                background-color: #1f2937;
+            }
+            h1 {
+                text-align: center;
+                margin-top: 20px;
+                font-size: 5em;
+                font-weight: 500;
+                background-color: #1f2937;
+            }
+            .main-content {
+                display: grid;
+                grid-template-columns: 3fr 1fr;
+                flex-grow: 1;
+                gap: 20px;
+                padding: 20px;
+                background-color: #1f2937;
+            }
+            #game-section {
+                position: relative;
+                height: 50vh;
+                margin-left: 5vh;
+            }
+            #story-section {
+                background-color: #444;
+                color: #f0f0f0;
+                padding: 20px;
+                height: 100vh; /* Double the height of the game section */
+                overflow-y: auto;
+            }
+            .controls {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                background-color: #444;
+                color: white;
+                text-align: center;
+                padding: 10px;
+            }
+            canvas {
+                display: block;
+                width: 100%;
+                height: auto;
             }
             #player1-health,
             #player2-health {
@@ -25,100 +80,212 @@
         </style>
     </head>
     <body>
-        <div style="position: relative; display: inline-block">
-            <div
-                style="
-                    position: absolute;
-                    display: flex;
-                    width: 100%;
-                    align-items: center;
-                    padding: 20px;
-                "
-            >
-                <div
-                    style="
-                        position: relative;
-                        width: 100%;
-                        display: flex;
-                        justify-content: flex-end;
-                        border: 7px solid #94A3B8;
-                        border-right: 5px;
-                    "
-                >
+        <h1>Trial By Steel</h1>
+        <div class="main-content">
+            <div id="game-section">
+                <div style="position: relative; display: inline-block">
                     <div
-                        style="background-color: red; height: 40px; width: 100%"
-                    ></div>
-                    <div
-                        id="player1-health"
                         style="
                             position: absolute;
-                            background: #5B21B6;
-                            height: 40px;
-                            top: 0;
-                            bottom: 0;
-                            right: 0;
+                            display: flex;
                             width: 100%;
+                            align-items: center;
+                            padding: 20px;
                         "
-                    ></div>
-                </div>
-                <div
-                    id="countdown"
-                    style="
-                        background-color: gray;
-                        font-size: 35px;
-                        height: 75px;
-                        width: 10%;
-                        display: flex;
-                        flex-shrink: 0;
-                        justify-content: center;
-                        align-items: center;
-                        color: black;
-                        border: 5px solid black;
-                    "
-                >
-                    60
-                </div>
-                <div
-                    style="
-                        position: relative;
-                        width: 100%;
-                        border: 7px solid #94A3B8;
-                        border-left: 5px;
-                    "
-                >
-                    <div style="background-color: red; height: 40px"></div>
+                    >
+                        <div
+                            style="
+                                position: relative;
+                                width: 100%;
+                                display: flex;
+                                justify-content: flex-end;
+                                border: 7px solid #94a3b8;
+                                border-right: 5px;
+                            "
+                        >
+                            <div
+                                style="
+                                    background-color: red;
+                                    height: 40px;
+                                    width: 100%;
+                                "
+                            ></div>
+                            <div
+                                id="player1-health"
+                                style="
+                                    position: absolute;
+                                    background: #5b21b6;
+                                    height: 40px;
+                                    top: 0;
+                                    bottom: 0;
+                                    right: 0;
+                                    width: 100%;
+                                "
+                            ></div>
+                        </div>
+                        <div
+                            id="countdown"
+                            style="
+                                background-color: gray;
+                                font-size: 35px;
+                                height: 75px;
+                                width: 10%;
+                                display: flex;
+                                flex-shrink: 0;
+                                justify-content: center;
+                                align-items: center;
+                                color: black;
+                                border: 5px solid black;
+                            "
+                        >
+                            60
+                        </div>
+                        <div
+                            style="
+                                position: relative;
+                                width: 100%;
+                                border: 7px solid #94a3b8;
+                                border-left: 5px;
+                            "
+                        >
+                            <div
+                                style="background-color: red; height: 40px"
+                            ></div>
+                            <div
+                                id="player2-health"
+                                style="
+                                    position: absolute;
+                                    background: #5b21b6;
+                                    height: 40px;
+                                    top: 0;
+                                    bottom: 0;
+                                    right: 0;
+                                    left: 0;
+                                "
+                            ></div>
+                        </div>
+                    </div>
                     <div
-                        id="player2-health"
+                        id="result"
                         style="
                             position: absolute;
-                            background: #5B21B6;
-                            height: 40px;
+                            align-items: center;
+                            justify-content: center;
                             top: 0;
-                            bottom: 0;
                             right: 0;
                             left: 0;
+                            bottom: 0;
+                            display: none;
+                            font-size: 30px;
                         "
-                    ></div>
+                    >
+                        Tie
+                    </div>
+                    <canvas></canvas>
                 </div>
             </div>
-            <div
-                id="result"
-                style="
-                    position: absolute;
-                    align-items: center;
-                    justify-content: center;
-                    top: 0;
-                    right: 0;
-                    left: 0;
-                    bottom: 0;
-                    display: none;
-                    font-size: 30px;
-                "
-            >
-                Tie
+            <div id="story-section">
+                <h2>The Duel of Black Hollow: Trial by Steel</h2>
+                <p>
+                    In the desolate town of Black Hollow, where ancient stone
+                    walls groaned beneath the weight of centuries, two warriors
+                    stood on the brink of destiny. The air was thick with
+                    anticipation as villagers gathered in the shadows, eyes
+                    glinting with fear and excitement. The names of the
+                    combatants had been whispered for weeks: Gregor, the Iron
+                    Bastion and Corvin, the Dancer of Shadows. Each warrior
+                    carried with them a reputation as fearsome as the town’s
+                    long-forgotten history. Black Hollow had seen many duels,
+                    but none with such stakes. Both men had claimed victories
+                    across the region, but never before had they faced each
+                    other. This was more than a duel of skill; it was a contest
+                    of ideologies, a clash between order and chaos.
+                </p>
+                <h2>Gregor, The Iron Bastion</h2>
+                <p>
+                    Gregor was a man molded by war. His armor, forged from the
+                    coldest of iron, gleamed beneath the waning sun, each plate
+                    scarred and pitted by battles long past. His shield was a
+                    massive slab of steel, as thick as a castle wall, while his
+                    sword was a brutal, broad-edged weapon meant to cleave
+                    through both flesh and armor. His fighting style was rooted
+                    in discipline, each movement slow but deliberate. He
+                    believed in overwhelming his opponents with defense, letting
+                    them break themselves against his iron wall before
+                    delivering the finishing blow. Gregor was the embodiment of
+                    order—predictable, relentless, and unyielding. To him, a
+                    fight was a siege, and he was the castle that would never
+                    fall.
+                </p>
+                <h2>Corvin, The Dancer of Shadows</h2>
+                <p>
+                    Across from Gregor stood Corvin, a man shrouded in mystery.
+                    In his hand, he wielded a single longsword, its slender
+                    blade honed to a razor's edge. Corvin was fast,
+                    unpredictable, his movements like smoke—here one moment,
+                    gone the next. His fighting style was an enigma to those who
+                    had seen him. He flowed through combat, striking with
+                    precision and speed, avoiding heavy armor and brute
+                    strength. Where Gregor embodied control, Corvin thrived in
+                    the unpredictable. He was an artist of chaos, painting death
+                    in graceful strokes.
+                </p>
+                <h2>The Silent Gathering</h2>
+                <p>
+                    The duel was to take place in front of the town's oldest
+                    structure: the weathered church of Black Hollow. Its
+                    towering, stone façade loomed behind the fighters, its
+                    stained glass windows glinting as the dim rays of Moon
+                    filtered through them. The church had long stood as a symbol
+                    of power and judgment—a fitting backdrop for what was to
+                    come. The townsfolk gathered around the church, many of them
+                    ,except a handful, hiding inside the houses and the
+                    establishments for they feared a sword slash might cut them
+                    in half if they didn't have a thick enough wall between them
+                    and the warriors.They spoke in hushed tones while peeking
+                    from the windows, unsure of which man would prove the
+                    mightier. The duel had been inevitable, with both warriors
+                    laying claim to the title of Black Hollow’s strongest. Now,
+                    only one could truly wear the crown.
+                </p>
+                <h2>The Challenge</h2>
+                <p>
+                    The bell in the church tower tolled, signaling the moment
+                    had arrived. Gregor, standing tall and unmoving, addressed
+                    his opponent with a voice that rumbled like distant thunder.
+                    “Corvin, your tricks and shadows won’t save you today. This
+                    fight is not one of speed—it’s one of endurance. And in
+                    that, I cannot be beaten.” Corvin smirked, the corner of his
+                    mouth twitching with amusement. “You still don’t understand,
+                    Gregor. Endurance means nothing when you can’t catch your
+                    enemy. I don’t need to stand in your way. I’ll cut you down
+                    before you even know I’m there.” The air between them
+                    crackled with tension. Neither man moved. It was a contest
+                    of wills as much as of weapons.
+                </p>
+                <h2>The Beginning of the End</h2>
+                <p>
+                    As the church bell struck again, the duel was set in motion.
+                    The fight was inevitable. The outcome was unknown. But in
+                    front of the ancient church, beneath the looming sky of
+                    Black Hollow, only one truth remained—only one man would
+                    walk away as the strongest. The crowd held its breath, for
+                    the true battle was about to begin.
+                </p>
             </div>
-            <canvas></canvas>
         </div>
+        <div class="controls">
+            <p>Controls:</p>
+            <p>
+                Player 1 : Left - A | Right - D | Jump - W | Attack - Space |
+                Heavy Attack - C | Block - S
+            </p>
+            <p>
+                Player 2 : Left - ArrowLeft | Right - ArrowRight | Jump -
+                ArrowUp | Attack - 0 | Heavy Attack - 1 | Block - ArrowDown
+            </p>
+        </div>
+
         <script src="canvas.js"></script>
         <script src="sprite.js"></script>
         <script src="players.js"></script>
