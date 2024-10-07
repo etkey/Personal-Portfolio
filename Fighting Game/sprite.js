@@ -63,12 +63,13 @@ class Sprite {
 const background = new Sprite({
     position: { x: 0, y: 0 },
     imageSrc: "./assets/background.png",
+    scale:1.25,
 });
 
 const crow1 = new Sprite({
-    position: { x: 45, y: 120 },
+    position: { x: 55, y: 120 },
     imageSrc: "./assets/flying.png",
-    scale: 0.8,
+    scale: 1.3,
     framesH: 1,
     framesW: 3,
     framesHold: 13,
@@ -78,7 +79,7 @@ const crow1 = new Sprite({
 const crow2 = new Sprite({
     position: { x: 0, y: 105 },
     imageSrc: "./assets/flying2.png",
-    scale: 0.8,
+    scale: 1.3,
     framesH: 1,
     framesW: 5,
     framesHold: 10,
@@ -86,18 +87,18 @@ const crow2 = new Sprite({
 });
 
 const pigeon = new Sprite({
-    position: { x: 500, y: 455 },
+    position: { x: 615, y: 570 },
     imageSrc: "./assets/pigeon.png",
-    scale: 0.5,
+    scale: 0.7,
     framesH: 1,
     framesW: 4,
     framesHold: 13,
 });
 
 const beggar = new Sprite({
-    position: { x: 210, y: 483 },
+    position: { x: 265, y: 610 },
     imageSrc: "assets/beggar.png",
-    scale: 2.3,
+    scale: 2.7,
     framesW: 5,
     framesH: 1,
     framesHold: 15,
@@ -112,26 +113,26 @@ const elder = new Sprite({
 });
 
 const dog = new Sprite({
-    position: { x: 650, y: 490 },
+    position: { x: 807, y: 612 },
     imageSrc: "assets/dog.png",
-    scale: 2,
+    scale: 2.5,
     framesW: 4,
     framesH: 1,
 });
 
 const sweeper = new Sprite({
-    position: { x: 867, y: 493 },
+    position: { x: 1088, y: 615 },
     imageSrc: "assets/villager_01.png",
-    scale: 1.9,
+    scale: 2.4,
     framesW: 5,
     framesH: 1,
     framesHold: 13,
 });
 
 const girlOnTheBalcony = new Sprite({
-    position: { x: 685, y: 397 },
+    position: { x: 857, y: 496 },
     imageSrc: "assets/girl_on_the_balcony.png",
-    scale: 1.8,
+    scale: 2.3,
     framesW: 4,
     framesH: 1,
     framesHold: 14,

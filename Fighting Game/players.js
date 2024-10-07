@@ -123,11 +123,12 @@ class Players extends Sprite {
             }
             if (
                 this.position.y + this.height + this.velocity.y >=
-                    canvas.height - 19 ||
+                    canvas.height - 25 ||
                 this.position.y + this.height + this.velocity.y <= 0
             ) {
                 this.velocity.y = 0;
-                this.position.y = 407;
+                this.position.y = 545
+                
             } else this.velocity.y += gravity;
         }
     }
@@ -284,7 +285,7 @@ class Players extends Sprite {
 const player1 = new Players({
     position: {
         x: 0,
-        y: 407,
+        y: 545,
     },
     velocity: {
         x: 0,
@@ -295,7 +296,7 @@ const player1 = new Players({
     scale: 2.1,
     offset: {
         x: 17,
-        y: -45,
+        y: -44,
     },
     sprites: {
         idle: {
@@ -365,8 +366,8 @@ const player1 = new Players({
 
 const player2 = new Players({
     position: {
-        x: 850,
-        y: 407,
+        x: 1100,
+        y: 545,
     },
     velocity: {
         x: 0,
@@ -375,10 +376,10 @@ const player2 = new Players({
     direction: -1,
     imageSrc: "./assets/Player2/Idle.png",
     framesW: 10,
-    scale: 1.9,
+    scale: 2,
     offset: {
         x: 46,
-        y: 2,
+        y: 8,
     },
     sprites: {
         idle: {

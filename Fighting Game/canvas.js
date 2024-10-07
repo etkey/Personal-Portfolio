@@ -1,8 +1,8 @@
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 
-canvas.width = 1024;
-canvas.height = 576;
+canvas.width = 1280;
+canvas.height = 720;
 
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -17,10 +17,10 @@ muteImage.src = "./assets/icons/music-off.png";
 unmuteImage.src = "./assets/icons/music-on.png";
 
 const button = {
-    x: 950,  
-    y: 100,  
-    width: muteImage.width * 0.08,
-    height: muteImage.height *0.08,
+    x: 1200,  
+    y: 140,  
+    width: muteImage.width * 0.1,
+    height: muteImage.height * 0.1,
 };
 
 function drawMuteButton() {

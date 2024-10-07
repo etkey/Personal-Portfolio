@@ -39,7 +39,7 @@ function animate() {
     ) {
         player1.velocity.x = -5;
         player1.switchSprite("run");
-        if (player1.position.y === 407) chainRun1.Audio.play();
+        if (player1.position.y === 545) chainRun1.Audio.play();
     } else if (
         keys.d.pressed &&
         player1.lastKey === "d" &&
@@ -47,7 +47,7 @@ function animate() {
     ) {
         player1.velocity.x = 5;
         player1.switchSprite("run");
-        if (player1.position.y === 407) chainRun1.Audio.play();
+        if (player1.position.y === 545) chainRun1.Audio.play();
     } else if (keys.s.pressed && player1.lastKey === "s") {
         player1.switchSprite("block");
     } else {
@@ -58,17 +58,17 @@ function animate() {
         chainJump.Audio.play();
     } else if (player1.velocity.y > 0) {
         player1.switchSprite("jumpDown");
-        if (player1.position.y >= 390) chainLand.Audio.play();
+        if (player1.position.y >= 520) chainLand.Audio.play();
     }
 
     if (keys.ArrowLeft.pressed && player2.lastKey === "ArrowLeft") {
         player2.velocity.x = -5;
         player2.switchSprite("run");
-        if (player2.position.y === 407) run1.Audio.play();
+        if (player2.position.y === 545 ) run1.Audio.play();
     } else if (keys.ArrowRight.pressed && player2.lastKey === "ArrowRight") {
         player2.velocity.x = 5;
         player2.switchSprite("run");
-        if (player2.position.y === 407) run1.Audio.play();
+        if (player2.position.y === 545 ) run1.Audio.play();
     }else if (keys.ArrowDown.pressed && player2.lastKey === "ArrowDown") {
         player2.switchSprite("block");
     } else {
@@ -79,7 +79,7 @@ function animate() {
         jump.Audio.play();
     } else if (player2.velocity.y > 0) {
         player2.switchSprite("jumpDown");
-        if (player2.position.y >= 390) land.Audio.play();
+        if (player2.position.y >= 520) land.Audio.play();
     }
 
     if (
@@ -91,7 +91,7 @@ function animate() {
             player1.checkHeavyAttack = true;
         }
         player1.isAttacking = false;
-        player2.health = player2.health - 7;
+        player2.health = player2.health - 10;
         if (player2.health <= 0) player2.health = 0;
         if (player2.health === 0) {
             player2.canAttack = false;
@@ -113,7 +113,7 @@ function animate() {
         } else {
             player1.succesfulAttackCount++;
             player1.isAttacking = false;
-            player2.health = player2.health - 7;
+            player2.health = player2.health - 10;
             if (player2.health <= 0) player2.health = 0;
             if (player2.health === 0) {
                 player2.canAttack = false;
@@ -135,7 +135,7 @@ function animate() {
         player1.checkHeavyAttack
     ) {
         player1.switchSprite("heavyAttack");
-        player2.health = player2.health - 14;
+        player2.health = player2.health - 20;
         if (player2.health <= 0) player2.health = 0;
         if (player2.health === 0) {
             player2.canAttack = false;
@@ -157,7 +157,7 @@ function animate() {
     ) {
         player2.succesfulAttackCount++;
         player2.isAttacking = false;
-        player1.health = player1.health - 7;
+        player1.health = player1.health - 10;
         if (player1.health <= 0) player1.health = 0;
         if (player1.health === 0) {
             player1.canAttack = false;
@@ -182,7 +182,7 @@ function animate() {
         } else {
             player2.succesfulAttackCount++;
             player2.isAttacking = false;
-            player1.health = player1.health - 7;
+            player1.health = player1.health - 10;
             if (player1.health <= 0) player1.health = 0;
             if (player1.health === 0) {
                 player1.canAttack = false;
@@ -206,7 +206,7 @@ function animate() {
         player2.checkHeavyAttack = false;
         player2.switchSprite("heavyAttack");
         player2.attackCount = 0;
-        player1.health = player1.health - 14;
+        player1.health = player1.health - 20;
         if (player1.health <= 0) player1.health = 0;
         if (player1.health === 0) {
             player1.canAttack = false;

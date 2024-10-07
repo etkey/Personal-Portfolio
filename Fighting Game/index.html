@@ -1,118 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Trial By Steel - A Fighting Game</title>
-        <link rel="icon" type="image/x-icon" href="shield.png" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Jersey+20&family=Pixelify+Sans:wght@400..700&display=swap"
-            rel="stylesheet"
-        />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Jacquard+24&display=swap"
-            rel="stylesheet"
-        />
-        <style>
-            * {
-                box-sizing: border-box;
-                font-family: "Jersey 20", sans-serif;
-                font-weight: 400;
-                font-style: normal;
-                margin: 0;
-                padding: 0;
-            }
-            body {
-                display: flex;
-                flex-direction: column;
-                height: 100vh;
-                background-color: #1f2937;
-            }
-            h1 {
-                text-align: center;
-                margin-top: 20px;
-                font-size: 5em;
-                font-weight: 500;
-                background-color: #1f2937;
-            }
-            .main-content {
-                display: grid;
-                grid-template-columns: 3fr 1fr;
-                flex-grow: 1;
-                gap: 20px;
-                padding: 20px;
-                background-color: #1f2937;
-            }
-            #game-section {
-                position: relative;
-                height: 50vh;
-                margin-left: 5vh;
-            }
-            #story-section {
-                background-color: #444;
-                color: #f0f0f0;
-                padding: 20px;
-                height: 100vh; /* Double the height of the game section */
-                overflow-y: auto;
-            }
-            .controls {
-                position: fixed;
-                bottom: 0;
-                width: 100%;
-                background-color: #444;
-                color: white;
-                text-align: center;
-                padding: 10px;
-            }
-            canvas {
-                display: block;
-                width: 100%;
-                height: auto;
-            }
-            #player1-health,
-            #player2-health {
-                transition: width 0.2s ease;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>Trial By Steel</h1>
-        <div class="main-content">
-            <div id="game-section">
-                <div style="position: relative; display: inline-block">
-                    <div
-                        style="
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trial By Steel - A Fighting Game</title>
+    <link rel="icon" type="image/x-icon" href="shield.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+20&family=Pixelify+Sans:wght@400..700&display=swap"
+        rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Jacquard+24&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: "Jersey 20", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #1f2937;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 5em;
+            font-weight: 500;
+            background-color: #1f2937;
+            color: white;
+        }
+
+        h2 {
+            font-size: 2em;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            grid-template-rows: auto 1fr;
+            gap: 10px;
+            padding: 20px;
+            background-color: #1f2937;
+            margin-left: 10vh;
+        }
+
+        #game-section {
+            position: relative;
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        #story-section {
+            background-color: #444;
+            color: #f0f0f0;
+            padding: 20px;
+            grid-column: 2;
+            grid-row: 1 / span 2;
+            overflow-y: auto;
+            height: 120vh;
+            font-size: 20px;
+        }
+
+        #dev-notes {
+            grid-column: 1;
+            grid-row: 2;
+            color: white;
+            padding: 10px;
+            padding-left: 0px;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #444;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 20px;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        #player1-health,
+        #player2-health {
+            transition: width 0.2s ease;
+        }
+
+        #dev-notes {
+            font-size: 2em;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Trial By Steel</h1>
+    <div class="main-content">
+        <div id="game-section">
+            <div style="position: relative; display: inline-block">
+                <div style="
                             position: absolute;
                             display: flex;
                             width: 100%;
                             align-items: center;
                             padding: 20px;
-                        "
-                    >
-                        <div
-                            style="
+                        ">
+                    <div style="
                                 position: relative;
                                 width: 100%;
                                 display: flex;
                                 justify-content: flex-end;
                                 border: 7px solid #94a3b8;
                                 border-right: 5px;
-                            "
-                        >
-                            <div
-                                style="
+                            ">
+                        <div style="
                                     background-color: red;
                                     height: 40px;
                                     width: 100%;
-                                "
-                            ></div>
-                            <div
-                                id="player1-health"
-                                style="
+                                "></div>
+                        <div id="player1-health" style="
                                     position: absolute;
                                     background: #5b21b6;
                                     height: 40px;
@@ -120,12 +139,9 @@
                                     bottom: 0;
                                     right: 0;
                                     width: 100%;
-                                "
-                            ></div>
-                        </div>
-                        <div
-                            id="countdown"
-                            style="
+                                "></div>
+                    </div>
+                    <div id="countdown" style="
                                 background-color: gray;
                                 font-size: 35px;
                                 height: 75px;
@@ -136,24 +152,17 @@
                                 align-items: center;
                                 color: black;
                                 border: 5px solid black;
-                            "
-                        >
-                            60
-                        </div>
-                        <div
-                            style="
+                            ">
+                        60
+                    </div>
+                    <div style="
                                 position: relative;
                                 width: 100%;
                                 border: 7px solid #94a3b8;
                                 border-left: 5px;
-                            "
-                        >
-                            <div
-                                style="background-color: red; height: 40px"
-                            ></div>
-                            <div
-                                id="player2-health"
-                                style="
+                            ">
+                        <div style="background-color: red; height: 40px"></div>
+                        <div id="player2-health" style="
                                     position: absolute;
                                     background: #5b21b6;
                                     height: 40px;
@@ -161,13 +170,10 @@
                                     bottom: 0;
                                     right: 0;
                                     left: 0;
-                                "
-                            ></div>
-                        </div>
+                                "></div>
                     </div>
-                    <div
-                        id="result"
-                        style="
+                </div>
+                <div id="result" style="
                             position: absolute;
                             align-items: center;
                             justify-content: center;
@@ -177,121 +183,225 @@
                             bottom: 0;
                             display: none;
                             font-size: 30px;
-                        "
-                    >
-                        Tie
-                    </div>
-                    <canvas></canvas>
+                        ">
+                    Tie
                 </div>
-            </div>
-            <div id="story-section">
-                <h2>The Duel of Black Hollow: Trial by Steel</h2>
-                <p>
-                    In the desolate town of Black Hollow, where ancient stone
-                    walls groaned beneath the weight of centuries, two warriors
-                    stood on the brink of destiny. The air was thick with
-                    anticipation as villagers gathered in the shadows, eyes
-                    glinting with fear and excitement. The names of the
-                    combatants had been whispered for weeks: Gregor, the Iron
-                    Bastion and Corvin, the Dancer of Shadows. Each warrior
-                    carried with them a reputation as fearsome as the town’s
-                    long-forgotten history. Black Hollow had seen many duels,
-                    but none with such stakes. Both men had claimed victories
-                    across the region, but never before had they faced each
-                    other. This was more than a duel of skill; it was a contest
-                    of ideologies, a clash between order and chaos.
-                </p>
-                <h2>Gregor, The Iron Bastion</h2>
-                <p>
-                    Gregor was a man molded by war. His armor, forged from the
-                    coldest of iron, gleamed beneath the waning sun, each plate
-                    scarred and pitted by battles long past. His shield was a
-                    massive slab of steel, as thick as a castle wall, while his
-                    sword was a brutal, broad-edged weapon meant to cleave
-                    through both flesh and armor. His fighting style was rooted
-                    in discipline, each movement slow but deliberate. He
-                    believed in overwhelming his opponents with defense, letting
-                    them break themselves against his iron wall before
-                    delivering the finishing blow. Gregor was the embodiment of
-                    order—predictable, relentless, and unyielding. To him, a
-                    fight was a siege, and he was the castle that would never
-                    fall.
-                </p>
-                <h2>Corvin, The Dancer of Shadows</h2>
-                <p>
-                    Across from Gregor stood Corvin, a man shrouded in mystery.
-                    In his hand, he wielded a single longsword, its slender
-                    blade honed to a razor's edge. Corvin was fast,
-                    unpredictable, his movements like smoke—here one moment,
-                    gone the next. His fighting style was an enigma to those who
-                    had seen him. He flowed through combat, striking with
-                    precision and speed, avoiding heavy armor and brute
-                    strength. Where Gregor embodied control, Corvin thrived in
-                    the unpredictable. He was an artist of chaos, painting death
-                    in graceful strokes.
-                </p>
-                <h2>The Silent Gathering</h2>
-                <p>
-                    The duel was to take place in front of the town's oldest
-                    structure: the weathered church of Black Hollow. Its
-                    towering, stone façade loomed behind the fighters, its
-                    stained glass windows glinting as the dim rays of Moon
-                    filtered through them. The church had long stood as a symbol
-                    of power and judgment—a fitting backdrop for what was to
-                    come. The townsfolk gathered around the church, many of them
-                    ,except a handful, hiding inside the houses and the
-                    establishments for they feared a sword slash might cut them
-                    in half if they didn't have a thick enough wall between them
-                    and the warriors.They spoke in hushed tones while peeking
-                    from the windows, unsure of which man would prove the
-                    mightier. The duel had been inevitable, with both warriors
-                    laying claim to the title of Black Hollow’s strongest. Now,
-                    only one could truly wear the crown.
-                </p>
-                <h2>The Challenge</h2>
-                <p>
-                    The bell in the church tower tolled, signaling the moment
-                    had arrived. Gregor, standing tall and unmoving, addressed
-                    his opponent with a voice that rumbled like distant thunder.
-                    “Corvin, your tricks and shadows won’t save you today. This
-                    fight is not one of speed—it’s one of endurance. And in
-                    that, I cannot be beaten.” Corvin smirked, the corner of his
-                    mouth twitching with amusement. “You still don’t understand,
-                    Gregor. Endurance means nothing when you can’t catch your
-                    enemy. I don’t need to stand in your way. I’ll cut you down
-                    before you even know I’m there.” The air between them
-                    crackled with tension. Neither man moved. It was a contest
-                    of wills as much as of weapons.
-                </p>
-                <h2>The Beginning of the End</h2>
-                <p>
-                    As the church bell struck again, the duel was set in motion.
-                    The fight was inevitable. The outcome was unknown. But in
-                    front of the ancient church, beneath the looming sky of
-                    Black Hollow, only one truth remained—only one man would
-                    walk away as the strongest. The crowd held its breath, for
-                    the true battle was about to begin.
-                </p>
+                <canvas></canvas>
             </div>
         </div>
-        <div class="controls">
-            <p>Controls:</p>
+        <div id="story-section">
+            <h2>The Duel of Black Hollow: Trial by Steel</h2>
             <p>
-                Player 1 : Left - A | Right - D | Jump - W | Attack - Space |
-                Heavy Attack - C | Block - S
+                In the desolate town of Black Hollow, where ancient stone
+                walls groaned beneath the weight of centuries, two warriors
+                stood on the brink of destiny. The air was thick with
+                anticipation as villagers gathered in the shadows, eyes
+                glinting with fear and excitement. The names of the
+                combatants had been whispered for weeks: Gregor, the Iron
+                Bastion and Corvin, the Dancer of Shadows. Each warrior
+                carried with them a reputation as fearsome as the town’s
+                long-forgotten history. Black Hollow had seen many duels,
+                but none with such stakes. Both men had claimed victories
+                across the region, but never before had they faced each
+                other. This was more than a duel of skill; it was a contest
+                of ideologies, a clash between order and chaos.
+                <br />
             </p>
+            <h2>Gregor, The Iron Bastion</h2>
             <p>
-                Player 2 : Left - ArrowLeft | Right - ArrowRight | Jump -
-                ArrowUp | Attack - 0 | Heavy Attack - 1 | Block - ArrowDown
+                Gregor was a man molded by war. His armor, forged from the
+                coldest of iron, gleamed beneath the waning sun, each plate
+                scarred and pitted by battles long past. His shield was a
+                massive slab of steel, as thick as a castle wall, while his
+                sword was a brutal, broad-edged weapon meant to cleave
+                through both flesh and armor. His fighting style was rooted
+                in discipline, each movement slow but deliberate. He
+                believed in overwhelming his opponents with defense, letting
+                them break themselves against his iron wall before
+                delivering the finishing blow. Gregor was the embodiment of
+                order—predictable, relentless, and unyielding. To him, a
+                fight was a siege, and he was the castle that would never
+                fall.
+                <br />
+            </p>
+            <h2>Corvin, The Dancer of Shadows</h2>
+            <p>
+                Across from Gregor stood Corvin, a man shrouded in mystery.
+                In his hand, he wielded a single longsword, its slender
+                blade honed to a razor's edge. Corvin was fast,
+                unpredictable, his movements like smoke—here one moment,
+                gone the next. His fighting style was an enigma to those who
+                had seen him. He flowed through combat, striking with
+                precision and speed, avoiding heavy armor and brute
+                strength. Where Gregor embodied control, Corvin thrived in
+                the unpredictable. He was an artist of chaos, painting death
+                in graceful strokes.
+                <br />
+            </p>
+            <h2>The Silent Gathering</h2>
+            <p>
+                The duel was to take place in front of the town's oldest
+                structure: the weathered church of Black Hollow. Its
+                towering, stone façade loomed behind the fighters, its
+                stained glass windows glinting as the dim rays of Moon
+                filtered through them. The church had long stood as a symbol
+                of power and judgment—a fitting backdrop for what was to
+                come. The townsfolk gathered around the church, many of them
+                ,except a handful, hiding inside the houses and the
+                establishments for they feared a sword slash might cut them
+                in half if they didn't have a thick enough wall between them
+                and the warriors.They spoke in hushed tones while peeking
+                from the windows, unsure of which man would prove the
+                mightier. The duel had been inevitable, with both warriors
+                laying claim to the title of Black Hollow’s strongest. Now,
+                only one could truly wear the crown.
+                <br />
+            </p>
+            <h2>The Challenge</h2>
+            <p>
+                The bell in the church tower tolled, signaling the moment
+                had arrived. Gregor, standing tall and unmoving, addressed
+                his opponent with a voice that rumbled like distant thunder.
+                “Corvin, your tricks and shadows won’t save you today. This
+                fight is not one of speed—it’s one of endurance. And in
+                that, I cannot be beaten.” Corvin smirked, the corner of his
+                mouth twitching with amusement. “You still don’t understand,
+                Gregor. Endurance means nothing when you can’t catch your
+                enemy. I don’t need to stand in your way. I’ll cut you down
+                before you even know I’m there.” The air between them
+                crackled with tension. Neither man moved. It was a contest
+                of wills as much as of weapons.
+            </p>
+            <br />
+            <h2>The Beginning of the End</h2>
+            <p>
+                As the church bell struck again, the duel was set in motion.
+                The fight was inevitable. The outcome was unknown. But in
+                front of the ancient church, beneath the looming sky of
+                Black Hollow, only one truth remained—only one man would
+                walk away as the strongest. The crowd held its breath, for
+                the true battle was about to begin.
+            </p>
+            <br />
+            <br />
+            <br />
+        </div>
+        <div id="dev-notes">
+            <br>
+            <br>
+            <br>
+            <h2>Developer's Notes</h2>
+            <br />
+            <p>
+                I have created this game on top of Chris Courses' fighting
+                game tutorial. Check him out
+                <a href="https://www.youtube.com/@ChrisCourses">here</a>.
+                <br />
+                <br />
+            <h3>What I personally added to make this game my own:</h3>
+            <br />
+            <h4><u>Gameplay</u></h4> <br />
+            <ul>
+                <li>Direction: Characters originally couldn't change direction.</li>
+                <li>Attack Combos:Each character has a distinct three attack
+                    animation. Characters originally only had one attack.</li>
+                <li>Heavy Attacks: Each character has a heavy attack that deals
+                    two times the normal damage.</li>
+                <li>Blocking: Each character has a
+                    blocking ability that is able to protect against normal
+                    attacks.</li>
+            </ul>
+            <br />
+            <h4><u>Background and NPCs</u></h4><br />
+            <ul>
+                <li>Moving NPCs: Animated a handful of NPCs for the background,
+                    beggar, sweeper, flying crows etc.</li>
+                <li>Background: Created a Gothic medieval city view.</li>
+            </ul>
+            <br>
+            <h4><u>SoundEffects</u></h4><br />
+            <ul>
+                <li>Background Music: Added background music that can be muted
+                    and unmuted.</li>
+                <li>Walking SFX: Player1 has a metallic walk sound because of
+                    the heavy armor, Player2 has a softer walk sound because of
+                    the lack of armor.</li>
+                <li>Jumping and Landing SFX: Player1 has a metallic jumping and
+                    landing sound because of the heavy armor, Player2 has a
+                    softer jumping and landing sound because of the lack of
+                    armor. </li>
+                <li>Attack SFX: Slashing sounds that are changing every swing
+                    are added.</li>
+                <li>Impact: When a character is successful with their attack an
+                    impact sound is played.</li>
+                <li>Blocking SFX: Player1 blocks
+                    with a shield so one of the three -sword hitting a shield-
+                    sounds are played according to the slashing combos. Player2
+                    blocks with a sword so one of the three -sword to sword-
+                    sounds are played according to the slashing combos.</li>
+                <li>Death SFX: A death SFX is added for each player according to
+                    their animations.</li>
+            </ul>
+            <br />
+            <h4><u>Bug Fixes</u></h4>
+            <br>
+            <ul>
+                <li>Fixed continuous jumping error which results the characters
+                    to go out of the canvas bounds.</li>
+                <li>Fixed rapid attack error by adding attack cooldown.</li>
+                <li>Other minor bug fixes.</li>
+            </ul>
+            <br>
+            <h3>Known Bugs</h3>
+            <br>
+            <ul>
+                <li>Death SFX is being played when the winner attacks to the other character after death</li>
+                <li>Dead characters can be stuck on air if killed airbone</li>
+                <li>Sometimes -especially when the health of the players are close- death animation doesn't work even though death SFX plays</li>
+            </ul>
+            <br>
+            <h3>Royalties</h2>
+            <br>
+                <ul>
+                    <li><a href="https://www.flaticon.com/free-icons/sword" title="sword icons">Favicon</a>
+                    </li>
+                    <li><a href="https://www.youtube.com/@jochisfx">Shield block effect</a></li>
+                    <li><a href="https://sventhole.itch.io/hero-knight">Player 1 Sprites</a></li>
+                    <li>Battlefield by Alexander Nakarada (CreatorChords) | https://creatorchords.com
+                        Music promoted by https://www.free-stock-music.com
+                        Creative Commons / Attribution 4.0 International (CC BY 4.0)
+                        https://creativecommons.org/licenses/by/4.0/</li>
+                    <li><a href="https://luizmelo.itch.io/martial-hero-3">Player 2 Sprites</a></li>
+                    <li><a href="https://ansimuz.itch.io/">Background</a></li>
+                    <li><a href="https://chierit.itch.io">NPCs</a></li>
+                </ul>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
             </p>
         </div>
+    </div>
+    <div class="controls">
+        <p>Controls:</p>
+        <p>
+            Player 1 : Left - A | Right - D | Jump - W | Attack - Space |
+            Heavy Attack - C | Block - S
+        </p>
+        <p>
+            Player 2 : Left - ArrowLeft | Right - ArrowRight | Jump -
+            ArrowUp | Attack - 0 | Heavy Attack - 1 | Block - ArrowDown
+        </p>
+    </div>
 
-        <script src="canvas.js"></script>
-        <script src="sprite.js"></script>
-        <script src="players.js"></script>
-        <script src="utilities.js"></script>
-        <script src="controls.js"></script>
-        <script src="audio.js"></script>
-        <script src="game.js"></script>
-    </body>
+    <script src="canvas.js"></script>
+    <script src="sprite.js"></script>
+    <script src="players.js"></script>
+    <script src="utilities.js"></script>
+    <script src="controls.js"></script>
+    <script src="audio.js"></script>
+    <script src="game.js"></script>
+</body>
+
 </html>
